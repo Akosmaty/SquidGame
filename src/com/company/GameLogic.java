@@ -1,8 +1,8 @@
 package com.company;
 
 public class GameLogic {
-    int userBalls = 10;
-    int npsBalls = 10;
+    int userBalls = 20;
+    int npsBalls = 20;
     int userBallsInHand;
     int npcBallsInHand;
     String userGuess;
@@ -11,10 +11,10 @@ public class GameLogic {
     public void StartGame() {
         // if Npc guess = true -> paired, if falls -> unpaired
         while (true) {
-            if (!((userBalls <= 0) || (userBalls >= 20)))
+            if (!((userBalls <= 0) || (userBalls >= 40)))
 
                 UserTurn();
-            if (!((userBalls <= 0 || userBalls >= 20)))
+            if (!((userBalls <= 0 || userBalls >= 40)))
                 NpsTurn();
             else {
                 System.out.println("Twoja liczba kulek to " + userBalls + " liczba kulek przeciwnika to " + npsBalls);
@@ -94,7 +94,6 @@ public class GameLogic {
         if (!(npcBallsInHand % 2 == 0) && (userGuess.equals("P") || userGuess.equals("p"))) {
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
-
         }
     }
 
