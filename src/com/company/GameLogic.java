@@ -9,45 +9,75 @@ public class GameLogic {
     boolean npcGuess;
 
     public void StartGame() {
-
-
         // if Npc guess = true -> paired, if falls -> unpaired
-
         while (true) {
-            if(!((userBalls <= 0)|| (userBalls>=20)))
+            if (!((userBalls <= 0) || (userBalls >= 20)))
 
-            UserTurn();
-            if(!((userBalls <= 0|| userBalls>=20)))
-            NpsTurn();
-            else{
+                UserTurn();
+            if (!((userBalls <= 0 || userBalls >= 20)))
+                NpsTurn();
+            else {
                 System.out.println("Twoja liczba kulek to " + userBalls + " liczba kulek przeciwnika to " + npsBalls);
                 break;
             }
         }
-
     }
 
     public void UserTurn() {
         npcBallsInHand = new NpcInput().BallsInHand(npsBalls);
-        System.out.println("posiadasz: "+userBalls+" kulek, ile chcesz wlozyc do reki?");
+
+        System.out.println("posiadasz: " + userBalls + " kulek, ile chcesz wlozyc do reki?");
+
         userBallsInHand = new UserInput().UserBallInHand();
-           while (userBallsInHand>userBalls){
 
-                System.out.println("Nie mozesz postawic wiecej kulek niz masz!!!!!" );
-                System.out.println("Pozostalo Ci "+ userBalls + " kulek");
-                userBallsInHand = new UserInput().UserBallInHand();
-            }
-
+        while (userBallsInHand > userBalls) {
+            UserCheater();
+        }
         System.out.println("Zgadnij czy Twoj przeciwnik ma parzysta(kliknij P) czy nieparzysta(kliknij N liczbe kulek w rece. ");
         userGuess = new UserInput().UserGuess();
-            while (!(userGuess.equals("P") || userGuess.equals("p") ||userGuess.equals("N") || userGuess.equals("n"))){
+        while (!(userGuess.equals("P") || userGuess.equals("p") || userGuess.equals("N") || userGuess.equals("n"))) {
+            UserMoron();
+        }
+        System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
 
-                System.out.println("wpisz poprawny znak P- parzysta, N - nieparzysta");
-                userGuess = new UserInput().UserGuess();
-            }
-            System.out.println("libcza kulek w ręku przeciwnika: "+ npcBallsInHand);
+        UserTurnLogic();
 
+    }
 
+    public void NpsTurn() {
+        npcBallsInHand = new NpcInput().BallsInHand(npsBalls);
+        System.out.println("posiadasz: " + userBalls + " kulek. ile z nich chcesz wlozyc do reki");
+        userBallsInHand = new UserInput().UserBallInHand();
+        while (userBallsInHand > userBalls) {
+            UserCheater();
+        }
+        npcGuess = new NpcInput().NpcGuess();
+        System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
+        System.out.println("Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
+        NpsTurnLogic();
+
+    }
+
+    public void UserTurnLogic() {
+        if (userBallsInHand % 2 == 0 && npcGuess) {
+            userBalls = userBalls - npcBallsInHand;
+            npsBalls = npsBalls + npcBallsInHand;
+        }
+        if (userBallsInHand % 2 == 0 && !npcGuess) {
+            npsBalls = npsBalls - userBallsInHand;
+            userBalls = userBalls + userBallsInHand;
+        }
+        if (userBallsInHand % 2 == 1 && !npcGuess) {
+            userBalls = userBalls - npcBallsInHand;
+            npsBalls = npsBalls + npcBallsInHand;
+        }
+        if (userBallsInHand % 2 == 1 && npcGuess) {
+            npsBalls = npsBalls - userBallsInHand;
+            userBalls = userBalls + userBallsInHand;
+        }
+    }
+
+    private void NpsTurnLogic() {
         if (npcBallsInHand % 2 == 0 && (userGuess.equals("P") || userGuess.equals("p"))) {
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
@@ -66,45 +96,19 @@ public class GameLogic {
             npsBalls = npsBalls + npcBallsInHand;
 
         }
-
-
-
     }
 
-    public void NpsTurn() {
-        npcBallsInHand = new NpcInput().BallsInHand(npsBalls);
-        System.out.println("posiadasz: "+userBalls+" kulek. ile z nich chcesz wlozyc do reki");
+    private void UserCheater() {
+
+        System.out.println("Nie mozesz postawic wiecej kulek niz masz!!!!!");
+        System.out.println("Pozostalo Ci " + userBalls + " kulek");
         userBallsInHand = new UserInput().UserBallInHand();
-        if (userBallsInHand > userBalls){
-            System.out.println("Nie mozesz postawic wiecej kulek niz masz!!!!!" );
-            System.out.println("Pozostalo Ci "+ userBalls + " kulek");
-            userBallsInHand = new UserInput().UserBallInHand();
-        }
-        npcGuess = new NpcInput().NpcGuess();
-        System.out.println("libcza kulek w ręku przeciwnika: "+ npcBallsInHand);
-        System.out.println("Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
-
-        if (userBallsInHand%2==0&& npcGuess){
-            userBalls = userBalls - npcBallsInHand;
-            npsBalls = npsBalls + npcBallsInHand;
-        }
-        if (userBallsInHand%2==0&& !npcGuess){
-            npsBalls = npsBalls - userBallsInHand;
-            userBalls = userBalls + userBallsInHand;
-        }
-        if (userBallsInHand%2==1&& !npcGuess){
-            userBalls = userBalls - npcBallsInHand;
-            npsBalls = npsBalls + npcBallsInHand;
-        }
-        if (userBallsInHand%2==1&& npcGuess){
-            npsBalls = npsBalls - userBallsInHand;
-            userBalls = userBalls + userBallsInHand;
-        }
-
 
 
     }
 
-
-
+    private void UserMoron() {
+        System.out.println("wpisz poprawny znak P- parzysta, N - nieparzysta");
+        userGuess = new UserInput().UserGuess();
+    }
 }

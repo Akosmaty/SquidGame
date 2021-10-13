@@ -3,18 +3,19 @@ package com.company;
 import java.util.Scanner;
 
 public class UserInput {
-     String userGuess;
+    String userGuess;
     int userBallsNumberInHand;
-    private final Scanner scanner= new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
 
-    public int UserBallInHand(){
+    public int UserBallInHand() {
         userBallsNumberInHand = scanner.nextInt();
 
 
-        return userBallsNumberInHand ;
+        return userBallsNumberInHand;
     }
-    public String UserGuess(){
+
+    public String UserGuess() {
         userGuess = scanner.nextLine();
 
         return userGuess;

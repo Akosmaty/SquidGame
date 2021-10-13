@@ -5,24 +5,21 @@ import java.util.Random;
 public class NpcInput {
 
 
-
     Random random = new Random();
 
 
-    public int BallsInHand(int allBalls){
+    public int BallsInHand(int allBalls) {
 
 
-        return  random.nextInt(allBalls);
+        return random.nextInt(allBalls);
 
     }
 
-    public boolean NpcGuess(){
+    public boolean NpcGuess() {
 
 
-        return  random.nextBoolean();
+        return random.nextBoolean();
     }
-
-
 
 
 }
