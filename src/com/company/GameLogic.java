@@ -59,19 +59,19 @@ public class GameLogic {
     }
 
     public void NpsTurnLogic() {
-        if (userBallsInHand % 2 == 0 && npcGuess == true) {
+        if (userBallsInHand % 2 == 0 && npcGuess) {
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
         }
-        if (userBallsInHand % 2 == 0 && npcGuess == false) {
+        if (userBallsInHand % 2 == 0 && !npcGuess) {
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
         }
-        if (!(userBallsInHand % 2 == 0) && npcGuess == false) {
+        if (!(userBallsInHand % 2 == 0) && !npcGuess) {
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
         }
-        if (!(userBallsInHand % 2 == 0) && npcGuess == true) {
+        if (!(userBallsInHand % 2 == 0) && npcGuess) {
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
         }
