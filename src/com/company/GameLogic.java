@@ -51,33 +51,33 @@ public class GameLogic {
         while (userBallsInHand > userBalls) {
             UserCheater();
         }
-        npcGuess = new NpcInput().NpcGuess();
+        this.npcGuess = new NpcInput().NpcGuess();
         System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
         System.out.println("Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
         NpsTurnLogic();
 
     }
 
-    public void UserTurnLogic() {
-        if (userBallsInHand % 2 == 0 && npcGuess) {
+    public void NpsTurnLogic() {
+        if (userBallsInHand % 2 == 0 && npcGuess == true) {
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
         }
-        if (userBallsInHand % 2 == 0 && !npcGuess) {
+        if (userBallsInHand % 2 == 0 && npcGuess == false) {
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
         }
-        if (userBallsInHand % 2 == 1 && !npcGuess) {
+        if (!(userBallsInHand % 2 == 0) && npcGuess == false) {
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
         }
-        if (userBallsInHand % 2 == 1 && npcGuess) {
+        if (!(userBallsInHand % 2 == 0) && npcGuess == true) {
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
         }
     }
 
-    private void NpsTurnLogic() {
+    private void UserTurnLogic() {
         if (npcBallsInHand % 2 == 0 && (userGuess.equals("P") || userGuess.equals("p"))) {
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
@@ -87,11 +87,11 @@ public class GameLogic {
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
         }
-        if (npcBallsInHand % 2 == 1 && (userGuess.equals("N") || userGuess.equals("n"))) {
+        if (!(npcBallsInHand % 2 == 0) && (userGuess.equals("N") || userGuess.equals("n"))) {
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
         }
-        if (npcBallsInHand % 2 == 1 && (userGuess.equals("P") || userGuess.equals("p"))) {
+        if (!(npcBallsInHand % 2 == 0) && (userGuess.equals("P") || userGuess.equals("p"))) {
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
 
