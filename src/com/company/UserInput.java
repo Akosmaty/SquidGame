@@ -20,4 +20,7 @@ public class UserInput {
 
         return userGuess;
     }
+    public String UserChoose(){
+        return scanner.nextLine();
+    }
 }

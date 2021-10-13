@@ -6,5 +6,6 @@ public class Main {
         // write your code here
 
         new GameLogic().StartGame();
+        new RestartGame().NewGame();
     }
 }
