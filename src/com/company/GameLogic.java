@@ -14,10 +14,10 @@ public class GameLogic {
         // if Npc guess = true -> paired, if falls -> unpaired
 
         while (true) {
-            if(!(userBalls <= 0)|| userBalls>=20)
+            if(!((userBalls <= 0)|| (userBalls>=20)))
 
             UserTurn();
-            if(!(userBalls <= 0)|| userBalls>=20)
+            if(!((userBalls <= 0|| userBalls>=20)))
             NpsTurn();
             else{
                 System.out.println("Twoja liczba kulek to" + userBalls + "libcza kulek przeciwnika to" + npsBalls);
@@ -67,19 +67,19 @@ public class GameLogic {
         System.out.println("libcza kulek w ręku przeciwnika: "+ npcBallsInHand);
         System.out.println("Przecwinik powiedział  " + npcGuess + "że masz parzysta liczbe kulek w reku");
 
-        if (userBallsInHand%2==0&& npcGuess==true){
+        if (userBallsInHand%2==0&& npcGuess){
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
         }
-        if (userBallsInHand%2==0&& npcGuess==false){
+        if (userBallsInHand%2==0&& !npcGuess){
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
         }
-        if (userBallsInHand%2==1&& npcGuess==false){
+        if (userBallsInHand%2==1&& !npcGuess){
             userBalls = userBalls - npcBallsInHand;
             npsBalls = npsBalls + npcBallsInHand;
         }
-        if (userBallsInHand%2==1&& npcGuess==true){
+        if (userBallsInHand%2==1&& npcGuess){
             npsBalls = npsBalls - userBallsInHand;
             userBalls = userBalls + userBallsInHand;
         }

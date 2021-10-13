@@ -3,9 +3,9 @@ package com.company;
 import java.util.Scanner;
 
 public class UserInput {
-    private String userGuess;
-    private int userBallsNumberInHand;
-    private Scanner scanner= new Scanner(System.in);
+     String userGuess;
+    int userBallsNumberInHand;
+    private final Scanner scanner= new Scanner(System.in);
 
 
     public int UserBallInHand(){
