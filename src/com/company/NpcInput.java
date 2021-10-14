@@ -8,14 +8,14 @@ public class NpcInput {
     Random random = new Random();
 
 
-    public int BallsInHand(int allBalls) {
+    public int ballsInHand(int allBalls) {
 
 
         return random.nextInt(allBalls);
 
     }
 
-    public boolean NpcGuess() {
+    public boolean npcGuess() {
 
 
         return random.nextBoolean();

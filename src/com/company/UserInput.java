@@ -8,19 +8,19 @@ public class UserInput {
     private final Scanner scanner = new Scanner(System.in);
 
 
-    public int UserBallInHand() {
+    public int userBallInHand() {
         userBallsNumberInHand = scanner.nextInt();
 
 
         return userBallsNumberInHand;
     }
 
-    public String UserGuess() {
+    public String userGuess() {
         userGuess = scanner.nextLine();
 
         return userGuess;
     }
-    public String UserChoose(){
+    public String userChoose(){
         return scanner.nextLine();
     }
 }
