@@ -4,8 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
+        GameLogic gameLogic = new GameLogic();
 
-        new GameLogic().startGame();
+        gameLogic.startGame();
+
 
     }
 }

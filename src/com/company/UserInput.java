@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class UserInput {
     String userGuess;
     int userBallsNumberInHand;
+    String userChooose;
     private final Scanner scanner = new Scanner(System.in);
 
 
@@ -20,7 +21,5 @@ public class UserInput {
 
         return userGuess;
     }
-    public String userChoose(){
-        return scanner.nextLine();
-    }
+
 }

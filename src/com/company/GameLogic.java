@@ -7,9 +7,10 @@ public class GameLogic {
     private int npcBallsInHand;
     private String userGuess;
     private boolean npcGuess;
+    private String userChoose = "Y";
     NpcInput npcInput = new NpcInput();
     UserInput userInput = new UserInput();
-    RestartGame restartGame = new RestartGame();
+
 
     public void startGame() {
         // if Npc guess = true -> paired, if falls -> unpaired
@@ -21,10 +22,14 @@ public class GameLogic {
                 npsTurn();
             else {
                 System.out.println("Twoja liczba kulek to " + userBalls + " liczba kulek przeciwnika to " + npsBalls);
+                userBalls = 20;
+                npsBalls = 20;
                 break;
+
             }
+
         }
-        restartGame.newGame();
+        restartGame();
     }
 
     public void userTurn() {
@@ -38,7 +43,7 @@ public class GameLogic {
             userCheater();
         }
         System.out.println("Zgadnij czy Twoj przeciwnik ma parzysta(kliknij P) czy nieparzysta(kliknij N liczbe kulek w rece. ");
-        userGuess = new UserInput().userGuess();
+        userGuess = userInput.userGuess();
         while (!(userGuess.equalsIgnoreCase("P") || userGuess.equalsIgnoreCase("N"))) {
             userMoron();
         }
@@ -114,4 +119,14 @@ public class GameLogic {
         System.out.println("wpisz poprawny znak P- parzysta, N - nieparzysta");
         userGuess = userInput.userGuess();
     }
+
+    private void restartGame() {
+        System.out.println("Jesli chcesz rozpoczac nowa gre kliklnij Y, w przeciwnym wypadku kliknij dowolny klawisz i zatwierdz enterem");
+        userChoose = userInput.userGuess();
+        if (userChoose.equalsIgnoreCase("y")){
+            startGame();
+        }
+
+    }
 }
+
