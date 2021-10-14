@@ -24,7 +24,7 @@ public class GameLogic {
                 break;
             }
         }
-        restartGame.NewGame();
+        restartGame.newGame();
     }
 
     public void userTurn() {
