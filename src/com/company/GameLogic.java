@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class GameLogic {
   NpcInput npcInput = new NpcInput();
   UserInput userInput = new UserInput();
-  private final int maxBallsInStock = gameRules();
+  private  int maxBallsInStock = gameRules();
 
   private int userBalls = maxBallsInStock;
   private int npsBalls = maxBallsInStock;
-  private int userBallsInHand;
+  private int userBallsInHand ;
   private int npcBallsInHand;
   private String userGuess;
   private boolean npcGuess;
@@ -120,18 +120,18 @@ public class GameLogic {
 
     System.out.println(
         "Jesli chcesz rozpoczac nowa gre kliklnij Y, w przeciwnym wypadku kliknij dowolny klawisz i zatwierdz enterem");
-    Scanner sc = new Scanner(System.in);
-    String userPlayOrLeave = sc.nextLine();
+    userInput.getUserChooose();
+    String userPlayOrLeave = userInput.userChooose;
 
     if (userPlayOrLeave.equalsIgnoreCase("y")) {
       userBalls = maxBallsInStock;
       npsBalls = maxBallsInStock;
       startGame();
-    } else System.exit(1);
+    } else System.exit(2);
   }
 
   private int gameRules() {
-    System.out.println("Podaj liczbe początkową kulek");
+    System.out.println("Podaj liczbe początkową kulek, aby zmienic liczbe poczatkowa kulek w trakcie gry nalezy ją zresetować");
     return userInput.userBallInHand();
   }
 }

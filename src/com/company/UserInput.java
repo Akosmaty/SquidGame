@@ -19,4 +19,8 @@ public class UserInput {
 
     return userGuess;
   }
+  public String getUserChooose(){
+    userChooose = scanner.nextLine();
+    return userChooose;
+  }
 }
