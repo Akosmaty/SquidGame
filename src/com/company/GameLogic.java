@@ -5,8 +5,10 @@ import java.util.Scanner;
 public class GameLogic {
   NpcInput npcInput = new NpcInput();
   UserInput userInput = new UserInput();
-  private int userBalls = 20;
-  private int npsBalls = 20;
+  private int maxBallsInStock = gameRules();
+
+  private int userBalls = maxBallsInStock;
+  private int npsBalls = maxBallsInStock;
   private int userBallsInHand;
   private int npcBallsInHand;
   private String userGuess;
@@ -14,9 +16,9 @@ public class GameLogic {
 
   public void startGame() {
     // if Npc guess = true -> paired, if falls -> unpaired
+
     while (true) {
       userTurn();
-
       npcTurn();
     }
   }
@@ -41,7 +43,7 @@ public class GameLogic {
       System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
 
       userTurnLogic();
-      if (((userBalls <= 0) || (userBalls >= 40))) endGame();
+      if (((userBalls <= 0) || (userBalls >= maxBallsInStock*2))) endGame();
     }
   }
 
@@ -58,7 +60,7 @@ public class GameLogic {
     System.out.println(
         "Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
     npsTurnLogic();
-    if (((userBalls <= 0) || (userBalls >= 40))) endGame();
+    if (((userBalls <= 0) || (userBalls >= maxBallsInStock*2))) endGame();
   }
 
   public void npsTurnLogic() {
@@ -67,16 +69,16 @@ public class GameLogic {
       npsBalls = npsBalls + npcBallsInHand;
     }
     if (userBallsInHand % 2 == 0 && !npcGuess) {
-      npsBalls = npsBalls - userBallsInHand;
-      userBalls = userBalls + userBallsInHand;
+      npsBalls = npsBalls - npcBallsInHand;
+      userBalls = userBalls + npcBallsInHand;
     }
     if (userBallsInHand % 2 == 1 && !npcGuess) {
       userBalls = userBalls - npcBallsInHand;
       npsBalls = npsBalls + npcBallsInHand;
     }
     if (userBallsInHand % 2 == 1 && npcGuess) {
-      npsBalls = npsBalls - userBallsInHand;
-      userBalls = userBalls + userBallsInHand;
+      npsBalls = npsBalls - npcBallsInHand;
+      userBalls = userBalls + npcBallsInHand;
     }
   }
 
@@ -86,16 +88,16 @@ public class GameLogic {
       userBalls = userBalls + userBallsInHand;
     }
     if (npcBallsInHand % 2 == 0 && (userGuess.equalsIgnoreCase("N"))) {
-      userBalls = userBalls - npcBallsInHand;
-      npsBalls = npsBalls + npcBallsInHand;
+      userBalls = userBalls - userBallsInHand;
+      npsBalls = npsBalls + userBallsInHand;
     }
     if (npcBallsInHand % 2 == 1 && (userGuess.equalsIgnoreCase("N"))) {
       npsBalls = npsBalls - userBallsInHand;
       userBalls = userBalls + userBallsInHand;
     }
     if (npcBallsInHand % 2 == 1 && (userGuess.equalsIgnoreCase("P"))) {
-      userBalls = userBalls - npcBallsInHand;
-      npsBalls = npsBalls + npcBallsInHand;
+      userBalls = userBalls - userBallsInHand;
+      npsBalls = npsBalls + userBallsInHand;
     }
   }
 
@@ -122,9 +124,14 @@ public class GameLogic {
     String userPlayOrLeave = sc.nextLine();
 
     if (userPlayOrLeave.equalsIgnoreCase("y")) {
-      userBalls = 20;
-      npsBalls = 20;
+      userBalls = maxBallsInStock;
+      npsBalls = maxBallsInStock;
       startGame();
-    } else System.exit(2);
+    } else System.exit(1);
+  }
+  private int gameRules(){
+    System.out.println("Podaj liczbe początkową kulek");
+    return userInput.userBallInHand();
+
   }
 }
