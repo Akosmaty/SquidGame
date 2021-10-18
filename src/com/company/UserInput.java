@@ -3,23 +3,20 @@ package com.company;
 import java.util.Scanner;
 
 public class UserInput {
-    String userGuess;
-    int userBallsNumberInHand;
-    String userChooose;
-    private final Scanner scanner = new Scanner(System.in);
+  private final Scanner scanner = new Scanner(System.in);
+  String userGuess;
+  int userBallsNumberInHand;
+  String userChooose;
 
+  public int userBallInHand() {
+    userBallsNumberInHand = scanner.nextInt();
 
-    public int userBallInHand() {
-        userBallsNumberInHand = scanner.nextInt();
+    return userBallsNumberInHand;
+  }
 
+  public String userGuess() {
+    userGuess = scanner.nextLine();
 
-        return userBallsNumberInHand;
-    }
-
-    public String userGuess() {
-        userGuess = scanner.nextLine();
-
-        return userGuess;
-    }
-
+    return userGuess;
+  }
 }
