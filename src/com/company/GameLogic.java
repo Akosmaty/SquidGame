@@ -15,12 +15,12 @@ public class GameLogic {
 
   public void startGame() {
     // if Npc guess = true -> paired, if falls -> unpaired
-    while (!((userBalls <= 0) || (userBalls >= 40))) {
+    while (true) {
       userTurn();
 
       npcTurn();
     }
-    endGame();
+
   }
 
   public void userTurn() {
@@ -60,6 +60,7 @@ public class GameLogic {
     System.out.println(
         "Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
     npsTurnLogic();
+      if (((userBalls <= 0) || (userBalls >= 40))) endGame();
   }
 
   public void npsTurnLogic() {
@@ -116,8 +117,7 @@ public class GameLogic {
 
     System.out.println(
         "Twoja liczba kulek to " + userBalls + " liczba kulek przeciwnika to " + npsBalls + "\n");
-    userBalls = 20;
-    npsBalls = 20;
+
 
 
     System.out.println(
@@ -125,9 +125,14 @@ public class GameLogic {
       Scanner sc = new Scanner(System.in);
      String userPlayOrLeave = sc.nextLine();
 
-    if (userPlayOrLeave.equalsIgnoreCase("y")) {
-      startGame();
-    }
-    else System.console();
+    if (userPlayOrLeave.equalsIgnoreCase("y")){
+      userBalls = 20;
+      npsBalls = 20;
+      startGame();}
+
+
+    else System.exit(2);
+
+
   }
 }
