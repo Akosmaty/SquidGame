@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GameLogic {
   NpcInput npcInput = new NpcInput();
   UserInput userInput = new UserInput();
-  private int maxBallsInStock = gameRules();
+  private final int maxBallsInStock = gameRules();
 
   private int userBalls = maxBallsInStock;
   private int npsBalls = maxBallsInStock;
@@ -43,7 +43,7 @@ public class GameLogic {
       System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
 
       userTurnLogic();
-      if (((userBalls <= 0) || (userBalls >= maxBallsInStock*2))) endGame();
+      if (((userBalls <= 0) || (userBalls >= maxBallsInStock * 2))) endGame();
     }
   }
 
@@ -60,7 +60,7 @@ public class GameLogic {
     System.out.println(
         "Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
     npsTurnLogic();
-    if (((userBalls <= 0) || (userBalls >= maxBallsInStock*2))) endGame();
+    if (((userBalls <= 0) || (userBalls >= maxBallsInStock * 2))) endGame();
   }
 
   public void npsTurnLogic() {
@@ -129,9 +129,9 @@ public class GameLogic {
       startGame();
     } else System.exit(1);
   }
-  private int gameRules(){
+
+  private int gameRules() {
     System.out.println("Podaj liczbe początkową kulek");
     return userInput.userBallInHand();
-
   }
 }
