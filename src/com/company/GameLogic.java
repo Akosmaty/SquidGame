@@ -125,6 +125,6 @@ public class GameLogic {
       userBalls = 20;
       npsBalls = 20;
       startGame();
-    } else System.exit();
+    } else System.exit(1);
   }
 }
