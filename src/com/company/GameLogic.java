@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class GameLogic {
   NpcInput npcInput = new NpcInput();
   UserInput userInput = new UserInput();
@@ -9,47 +11,44 @@ public class GameLogic {
   private int npcBallsInHand;
   private String userGuess;
   private boolean npcGuess;
-  private String userChoose = "Y";
+
 
   public void startGame() {
     // if Npc guess = true -> paired, if falls -> unpaired
-    while (true) {
-      if (!((userBalls <= 0) || (userBalls >= 40))) userTurn();
+    while (!((userBalls <= 0) || (userBalls >= 40))) {
+      userTurn();
 
-      if (!((userBalls <= 0 || userBalls >= 40))) npsTurn();
-      else {
-        System.out.println(
-            "Twoja liczba kulek to " + userBalls + " liczba kulek przeciwnika to " + npsBalls);
-        userBalls = 20;
-        npsBalls = 20;
-        break;
-      }
+      npcTurn();
     }
-    restartGame();
+    endGame();
   }
 
   public void userTurn() {
-    npcBallsInHand = npcInput.ballsInHand(npsBalls);
+    {
+      npcBallsInHand = npcInput.ballsInHand(npsBalls);
 
-    System.out.println("posiadasz: " + userBalls + " kulek, ile chcesz wlozyc do reki?");
+      System.out.println("posiadasz: " + userBalls + " kulek, ile chcesz wlozyc do reki?");
 
-    userBallsInHand = userInput.userBallInHand();
+      userBallsInHand = userInput.userBallInHand();
 
-    while (userBallsInHand > userBalls) {
-      userCheater();
+      while (userBallsInHand > userBalls) {
+        userCheater();
+      }
+      System.out.println(
+          "Zgadnij czy Twoj przeciwnik ma parzysta(kliknij P) czy nieparzysta(kliknij N liczbe kulek w rece. ");
+      userGuess = userInput.userGuess();
+      while (!(userGuess.equalsIgnoreCase("P") || userGuess.equalsIgnoreCase("N"))) {
+        userMoron();
+      }
+      System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
+
+      userTurnLogic();
+      if (((userBalls <= 0) || (userBalls >= 40))) endGame();
     }
-    System.out.println(
-        "Zgadnij czy Twoj przeciwnik ma parzysta(kliknij P) czy nieparzysta(kliknij N liczbe kulek w rece. ");
-    userGuess = userInput.userGuess();
-    while (!(userGuess.equalsIgnoreCase("P") || userGuess.equalsIgnoreCase("N"))) {
-      userMoron();
-    }
-    System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
-
-    userTurnLogic();
   }
 
-  public void npsTurn() {
+  public void npcTurn() {
+
     npcBallsInHand = npcInput.ballsInHand(npsBalls);
     System.out.println("posiadasz: " + userBalls + " kulek. ile z nich chcesz wlozyc do reki");
     userBallsInHand = userInput.userBallInHand();
@@ -113,12 +112,22 @@ public class GameLogic {
     userGuess = userInput.userGuess();
   }
 
-  private void restartGame() {
+  private void endGame() {
+
+    System.out.println(
+        "Twoja liczba kulek to " + userBalls + " liczba kulek przeciwnika to " + npsBalls + "\n");
+    userBalls = 20;
+    npsBalls = 20;
+
+
     System.out.println(
         "Jesli chcesz rozpoczac nowa gre kliklnij Y, w przeciwnym wypadku kliknij dowolny klawisz i zatwierdz enterem");
-    userChoose = userInput.userGuess();
-    if (userChoose.equalsIgnoreCase("y")) {
+      Scanner sc = new Scanner(System.in);
+     String userPlayOrLeave = sc.nextLine();
+
+    if (userPlayOrLeave.equalsIgnoreCase("y")) {
       startGame();
     }
+    else System.console();
   }
 }
