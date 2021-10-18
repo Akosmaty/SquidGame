@@ -67,16 +67,16 @@ public class GameLogic {
       npsBalls = npsBalls + npcBallsInHand;
     }
     if (userBallsInHand % 2 == 0 && !npcGuess) {
-      npsBalls = npsBalls - userBallsInHand;
-      userBalls = userBalls + userBallsInHand;
+      npsBalls = npsBalls - npcBallsInHand;
+      userBalls = userBalls + npcBallsInHand;
     }
     if (userBallsInHand % 2 == 1 && !npcGuess) {
       userBalls = userBalls - npcBallsInHand;
       npsBalls = npsBalls + npcBallsInHand;
     }
     if (userBallsInHand % 2 == 1 && npcGuess) {
-      npsBalls = npsBalls - userBallsInHand;
-      userBalls = userBalls + userBallsInHand;
+      npsBalls = npsBalls - npcBallsInHand;
+      userBalls = userBalls + npcBallsInHand;
     }
   }
 
@@ -86,16 +86,16 @@ public class GameLogic {
       userBalls = userBalls + userBallsInHand;
     }
     if (npcBallsInHand % 2 == 0 && (userGuess.equalsIgnoreCase("N"))) {
-      userBalls = userBalls - npcBallsInHand;
-      npsBalls = npsBalls + npcBallsInHand;
+      userBalls = userBalls - userBallsInHand;
+      npsBalls = npsBalls + userBallsInHand;
     }
     if (npcBallsInHand % 2 == 1 && (userGuess.equalsIgnoreCase("N"))) {
       npsBalls = npsBalls - userBallsInHand;
       userBalls = userBalls + userBallsInHand;
     }
     if (npcBallsInHand % 2 == 1 && (userGuess.equalsIgnoreCase("P"))) {
-      userBalls = userBalls - npcBallsInHand;
-      npsBalls = npsBalls + npcBallsInHand;
+      userBalls = userBalls - userBallsInHand;
+      npsBalls = npsBalls + userBallsInHand;
     }
   }
 
@@ -125,6 +125,6 @@ public class GameLogic {
       userBalls = 20;
       npsBalls = 20;
       startGame();
-    } else System.exit(2);
+    } else System.exit();
   }
 }
