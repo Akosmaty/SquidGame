@@ -1,16 +1,20 @@
 package com.company;
 
-public class GameLogic {
+import java.util.ArrayList;
+
+public class Game {
   NpcInput npcInput = new NpcInput();
   UserInput userInput = new UserInput();
   private final int maxBallsInStock = gameRules();
-
+  ArrayList<Integer> list = new ArrayList<>();
+  Logic logic = new Logic();
   private int userBalls = maxBallsInStock;
   private int npsBalls = maxBallsInStock;
   private int userBallsInHand;
   private int npcBallsInHand;
   private String userGuess;
   private boolean npcGuess;
+  private boolean userGuessInBoolean;
 
   public void startGame() {
     // if Npc guess = true -> paired, if falls -> unpaired
@@ -35,10 +39,19 @@ public class GameLogic {
       userGuess = userInput.userGuess();
 
       playerGuessValidator();
+      list.add(userBallsInHand);
+      list.add(npcBallsInHand);
+      userGuessInBoolean = userGuessTranslator(userGuess);
+      list.add(userBalls);
+      list.add(npsBalls);
+      logic.setParameters(list, userGuessInBoolean);
 
       System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
 
-      userTurnLogic();
+      logic.turnLogic();
+      userBalls = logic.activePlayerBallsInStack;
+      npsBalls = logic.passivePlayerBallsInStack;
+      list.clear();
       endTurnChecker();
     }
   }
@@ -51,51 +64,23 @@ public class GameLogic {
 
     antycheat();
 
+    list.add(npcBallsInHand);
+    list.add(userBallsInHand);
     this.npcGuess = npcInput.npcGuess();
+    list.add(npsBalls);
+    list.add(userBalls);
 
+    logic.setParameters(list, npcGuess);
     System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
     System.out.println(
         "Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
-    npsTurnLogic();
+
+    logic.turnLogic();
+    userBalls = logic.passivePlayerBallsInStack;
+    npsBalls = logic.activePlayerBallsInStack;
+    list.clear();
+
     endTurnChecker();
-  }
-
-  public void npsTurnLogic() {
-    if (userBallsInHand % 2 == 0 && npcGuess) {
-      userBalls = userBalls - npcBallsInHand;
-      npsBalls = npsBalls + npcBallsInHand;
-    }
-    if (userBallsInHand % 2 == 0 && !npcGuess) {
-      npsBalls = npsBalls - npcBallsInHand;
-      userBalls = userBalls + npcBallsInHand;
-    }
-    if (userBallsInHand % 2 == 1 && !npcGuess) {
-      userBalls = userBalls - npcBallsInHand;
-      npsBalls = npsBalls + npcBallsInHand;
-    }
-    if (userBallsInHand % 2 == 1 && npcGuess) {
-      npsBalls = npsBalls - npcBallsInHand;
-      userBalls = userBalls + npcBallsInHand;
-    }
-  }
-
-  private void userTurnLogic() {
-    if (npcBallsInHand % 2 == 0 && (userGuess.equalsIgnoreCase("P"))) {
-      npsBalls = npsBalls - userBallsInHand;
-      userBalls = userBalls + userBallsInHand;
-    }
-    if (npcBallsInHand % 2 == 0 && (userGuess.equalsIgnoreCase("N"))) {
-      userBalls = userBalls - userBallsInHand;
-      npsBalls = npsBalls + userBallsInHand;
-    }
-    if (npcBallsInHand % 2 == 1 && (userGuess.equalsIgnoreCase("N"))) {
-      npsBalls = npsBalls - userBallsInHand;
-      userBalls = userBalls + userBallsInHand;
-    }
-    if (npcBallsInHand % 2 == 1 && (userGuess.equalsIgnoreCase("P"))) {
-      userBalls = userBalls - userBallsInHand;
-      npsBalls = npsBalls + userBallsInHand;
-    }
   }
 
   private void antycheat() {
@@ -138,5 +123,9 @@ public class GameLogic {
     System.out.println(
         "Podaj liczbe początkową kulek, aby zmienic liczbe poczatkowa kulek w trakcie gry nalezy ją zresetować");
     return userInput.userBallInHand();
+  }
+
+  private boolean userGuessTranslator(String userGuess) {
+    return userGuess.equalsIgnoreCase("p");
   }
 }
