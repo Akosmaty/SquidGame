@@ -3,24 +3,15 @@ package com.company;
 import java.util.Scanner;
 
 public class UserInput {
-  private final Scanner scanner = new Scanner(System.in);
-  String userGuess;
-  int userBallsNumberInHand;
-  String userChooose;
+  final Scanner scanner = new Scanner(System.in);
 
-  public int userBallInHand() {
-    userBallsNumberInHand = scanner.nextInt();
+  int userBallInHand() {
 
-    return userBallsNumberInHand;
+    return scanner.nextInt();
   }
 
-  public String userGuess() {
-    userGuess = scanner.nextLine();
+  String userGuess() {
 
-    return userGuess;
-  }
-  public String getUserChooose(){
-    userChooose = scanner.nextLine();
-    return userChooose;
+    return scanner.nextLine();
   }
 }
