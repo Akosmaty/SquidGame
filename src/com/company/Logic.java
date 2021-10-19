@@ -20,23 +20,29 @@ public class Logic {
   public void turnLogic() {
 
     if (passivePlayerBallsInHand % 2 == 0 && activePlayerGuess) {
-      activePlayerBallsInStack = activePlayerBallsInStack + activePlayerBallsInHand;
-      passivePlayerBallsInStack = passivePlayerBallsInStack - activePlayerBallsInHand;
+      activeWin();
     }
 
     if (passivePlayerBallsInHand % 2 == 0 && !activePlayerGuess) {
-      activePlayerBallsInStack = activePlayerBallsInStack - activePlayerBallsInHand;
-      passivePlayerBallsInStack = passivePlayerBallsInStack + activePlayerBallsInHand;
+    activeLoose();
     }
 
     if (passivePlayerBallsInHand % 2 == 1 && !activePlayerGuess) {
-      activePlayerBallsInStack = activePlayerBallsInStack + activePlayerBallsInHand;
-      passivePlayerBallsInStack = passivePlayerBallsInStack - activePlayerBallsInHand;
+      activeWin();
     }
 
     if (passivePlayerBallsInHand % 2 == 1 && activePlayerGuess) {
-      activePlayerBallsInStack = activePlayerBallsInStack - activePlayerBallsInHand;
-      passivePlayerBallsInStack = passivePlayerBallsInStack + activePlayerBallsInHand;
+     activeLoose();
     }
   }
+  void activeWin(){
+    activePlayerBallsInStack = activePlayerBallsInStack + activePlayerBallsInHand;
+    passivePlayerBallsInStack = passivePlayerBallsInStack - activePlayerBallsInHand;
+
+  }
+  void activeLoose(){
+    activePlayerBallsInStack = activePlayerBallsInStack - activePlayerBallsInHand;
+    passivePlayerBallsInStack = passivePlayerBallsInStack + activePlayerBallsInHand;
+  }
+
 }

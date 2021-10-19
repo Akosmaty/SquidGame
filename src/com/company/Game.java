@@ -18,10 +18,10 @@ public class Game {
 
   public void startGame() {
     // if Npc guess = true -> paired, if falls -> unpaired
-
+  while(true){
     userTurn();
     npcTurn();
-    startGame();
+    }
   }
 
   public void userTurn() {
@@ -116,7 +116,7 @@ public class Game {
       userBalls = maxBallsInStock;
       npsBalls = maxBallsInStock;
       startGame();
-    } else System.exit(2);
+    }  System.exit(2);
   }
 
   private int gameRules() {
