@@ -50,7 +50,7 @@ public class GameBeatwinBots {
                 list.add(npsBalls);
                 logic.setParameters(list, userGuessInBoolean);
 
-                System.out.println("Bot Radoslaw twierdzi  " + userGuessInBoolean + "ze Bot Marcinek obstawił parzysta liczbe kulek");
+                System.out.println("Bot Radoslaw twierdzi  " + userGuessInBoolean + " ze Bot Marcinek obstawił parzysta liczbe kulek");
 
                 logic.turnLogic();
                 userBalls = logic.activePlayerBallsInStack;
@@ -66,15 +66,15 @@ public class GameBeatwinBots {
 
             userBallsInHand = npcInput.ballsInHand(userBalls);
 
-            System.out.println("Bot Radoslaw posiada " + userBalls + " kulek \n Bot Marcinek posiada " + npsBalls + "kulek");
-            System.out.println("Bot Radoslaw obstawił " + userBallsInHand + " kulek \n Bot Marcinek obstawił " +  npcBallsInHand + "kulek"  );
+            System.out.println("Bot Radoslaw posiada " + userBalls + " kulek \n Bot Marcinek posiada " + npsBalls + " kulek");
+            System.out.println("Bot Radoslaw obstawił " + userBallsInHand + " kulek \n Bot Marcinek obstawił " +  npcBallsInHand + " kulek"  );
 
             list.add(npcBallsInHand);
             list.add(userBallsInHand);
             this.npcGuess = npcInput.npcGuess();
             list.add(npsBalls);
             list.add(userBalls);
-            System.out.println("Bot Marcinek twierdzi  " + userGuessInBoolean + "ze Bot Radoslaw obstawił parzysta liczbe kulek");
+            System.out.println("Bot Marcinek twierdzi  " + userGuessInBoolean + " ze Bot Radoslaw obstawił parzysta liczbe kulek");
 
             logic.setParameters(list, npcGuess);
 
@@ -96,7 +96,7 @@ public class GameBeatwinBots {
         private void endGame() {
 
             System.out.println(
-                    " liczba kulek Radoslawa  to " + userBalls + " liczba kulek Bota Marcinka to " + npsBalls + "\n");
+                    " liczba kulek Bota Radoslawa  to " + userBalls + " liczba kulek Bota Marcinka to " + npsBalls + "\n");
 
             System.out.println(
                     "Jesli chcesz rozpoczac nowa gre kliklnij Y, w przeciwnym wypadku kliknij dowolny klawisz i zatwierdz enterem");
