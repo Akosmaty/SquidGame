@@ -2,10 +2,6 @@ package com.company;
 
 import java.util.ArrayList;
 
-
-
-import java.util.ArrayList;
-
 public class GameBeatwinBots {
         NpcInput npcInput = new NpcInput();
 
@@ -19,7 +15,7 @@ public class GameBeatwinBots {
         private String userGuess;
         private boolean npcGuess;
         private boolean userGuessInBoolean;
-        private UserInput userInput = new UserInput();
+        private final UserInput userInput = new UserInput();
 
         public void startGame() {
             // if Npc guess = true -> paired, if falls -> unpaired
@@ -111,10 +107,5 @@ public class GameBeatwinBots {
         }
 
 
-
-
-        private boolean userGuessTranslator(String userGuess) {
-            return userGuess.equalsIgnoreCase("p");
-        }
-    }
+}
 
