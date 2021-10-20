@@ -4,8 +4,7 @@ public class Main {
 
   public static void main(String[] args) {
     // write your code here
-    Game gameLogic = new Game();
-
-    gameLogic.startGame();
+   GameMode gameMode = new GameMode();
+   gameMode.gamemode();
   }
 }
