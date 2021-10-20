@@ -33,14 +33,13 @@ public class GameBeatwinBots {
             {
                 npcBallsInHand = npcInput.ballsInHand(npsBalls);
 
-                System.out.println("posiadasz: " + userBalls + " kulek, ile chcesz wlozyc do reki?");
-
                 userBallsInHand = npcInput.ballsInHand(userBalls);
 
+                System.out.println("Bot Radoslaw posiada " + userBalls + " kulek \n Bot Marcinek posiada " + npsBalls + "kulek");
+                System.out.println("Bot Radoslaw obstawił " + userBallsInHand + " kulek \n Bot Marcinek obstawił " +  npcBallsInHand + "kulek"  );
 
 
-                System.out.println(
-                        "Zgadnij czy Twoj przeciwnik ma parzysta(kliknij P) czy nieparzysta(kliknij N liczbe kulek w rece. ");
+
 
 
 
@@ -51,7 +50,7 @@ public class GameBeatwinBots {
                 list.add(npsBalls);
                 logic.setParameters(list, userGuessInBoolean);
 
-                System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
+                System.out.println("Bot Radoslaw twierdzi  " + userGuessInBoolean + "ze Bot Marcinek obstawił parzysta liczbe kulek");
 
                 logic.turnLogic();
                 userBalls = logic.activePlayerBallsInStack;
@@ -64,21 +63,20 @@ public class GameBeatwinBots {
         public void botNpcTurn() {
 
             npcBallsInHand = npcInput.ballsInHand(npsBalls);
-            System.out.println("posiadasz: " + userBalls + " kulek. ile z nich chcesz wlozyc do reki");
+
             userBallsInHand = npcInput.ballsInHand(userBalls);
 
-
+            System.out.println("Bot Radoslaw posiada " + userBalls + " kulek \n Bot Marcinek posiada " + npsBalls + "kulek");
+            System.out.println("Bot Radoslaw obstawił " + userBallsInHand + " kulek \n Bot Marcinek obstawił " +  npcBallsInHand + "kulek"  );
 
             list.add(npcBallsInHand);
             list.add(userBallsInHand);
             this.npcGuess = npcInput.npcGuess();
             list.add(npsBalls);
             list.add(userBalls);
+            System.out.println("Bot Marcinek twierdzi  " + userGuessInBoolean + "ze Bot Radoslaw obstawił parzysta liczbe kulek");
 
             logic.setParameters(list, npcGuess);
-            System.out.println("libcza kulek w ręku przeciwnika: " + npcBallsInHand);
-            System.out.println(
-                    "Przecwinik powiedział  " + npcGuess + " że masz parzysta liczbe kulek w reku");
 
             logic.turnLogic();
             userBalls = logic.passivePlayerBallsInStack;
@@ -98,7 +96,7 @@ public class GameBeatwinBots {
         private void endGame() {
 
             System.out.println(
-                    "Twoja liczba kulek to " + userBalls + " liczba kulek przeciwnika to " + npsBalls + "\n");
+                    " liczba kulek Radoslawa  to " + userBalls + " liczba kulek Bota Marcinka to " + npsBalls + "\n");
 
             System.out.println(
                     "Jesli chcesz rozpoczac nowa gre kliklnij Y, w przeciwnym wypadku kliknij dowolny klawisz i zatwierdz enterem");
